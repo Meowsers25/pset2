@@ -2,33 +2,44 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
-int main(void)
+int main(int argc, string argv[])
 {
-    printf("Pick a Number Between 1 and 26: ");
-    int num = get_int();
-
-    if (num < 1 || num > 26)
+    if (argc != 2)
     {
-        printf("Repick\n");
+        return 1;
     }
+    int x = atoi(argv[1]);
+    //printf("integer is %i\n", x);
 
+    printf("Plaintext: ");
+    string ptext = get_string();
+    //printf("text is: %s\n", ptext);
 
-
-    printf("Please write your sentence: ");
-    string sen = get_string();
-
-    for (int i = 0, n = strlen(sen); i < n; i++)
+    for (int i = 0, n = strlen(ptext); i < n; i++)
     {
-        if (sen[i] == ' ')
+        if (ptext[i] == ' ')
         {
-            printf("%c", ' ');
+            ptext[i] = ptext[i];
         }
-        else if (sen[i] != ' ')
+        else if (isalpha(ptext[i]))
         {
-            sen[i] = sen[i] + num;
-            printf("%c", sen[i]);
+            if (isupper(ptext[i]))
+            {
+                ptext[i] = (ptext[i] - 65 + x) % 26 + 65;
+            }
+             if (islower(ptext[i]))
+            {
+                ptext[i] = (ptext[i] - 97 + x) % 26 + 97;
+            }
         }
-        //printf("\n");
+        else
+        {
+            ptext[i] = ptext[i];
+        }
     }
+    printf("Ciphertext: %s", ptext);
+    printf("\n");
+    return 0;
 }
