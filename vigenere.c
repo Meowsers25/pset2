@@ -13,7 +13,7 @@ int main(int argc, string argv[])
     int x = atoi(argv[1]);
     //printf("integer is %i\n", x);
 
-    printf("plaintext: ");
+    printf("Plaintext: ");
     string ptext = get_string();
     //printf("text is: %s\n", ptext);
 
@@ -39,7 +39,7 @@ int main(int argc, string argv[])
             ptext[i] = ptext[i];
         }
     }
-    printf("ciphertext: %s", ptext);
+    printf("Ciphertext: %s", ptext);
     printf("\n");
     return 0;
 }

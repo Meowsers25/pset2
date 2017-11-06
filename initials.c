@@ -6,7 +6,7 @@
 int main(void)
 {
     //get string from user
-    printf("Name: ");
+    //printf("Name: ");
     string s = get_string();
 
     //iterate through the string
