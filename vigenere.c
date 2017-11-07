@@ -29,17 +29,17 @@ int main(int argc, string argv[])
 
     for (int i = 0, a = 0, n = strlen(ptext); i < n; i++)
     {
-        int vig = tolower(key[a % keyLength]) - 'a';
+        int vig = tolower(key[a % keyLength]) - 97;
 
         if (isupper(ptext[i]))
         {
-           ptext[i] = 'A' + (ptext[i] - 'A' + vig) % 26;
+           ptext[i] = 65 + (ptext[i] - 65 + vig) % 26;
 
             a++;
         }
         else if (islower(ptext[i]))
         {
-            ptext[i] = 'a' + (ptext[i] - 'a' + vig) % 26;
+            ptext[i] = 97 + (ptext[i] - 97 + vig) % 26;
 
             a++;
         }
