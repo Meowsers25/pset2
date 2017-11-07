@@ -10,6 +10,7 @@ int main(int argc, string argv[])
     {
         return 1;
     }
+
     int x = atoi(argv[1]);
     //printf("integer is %i\n", x);
 

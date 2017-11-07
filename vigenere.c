@@ -8,38 +8,47 @@ int main(int argc, string argv[])
 {
     if (argc != 2)
     {
+        printf("false");
         return 1;
     }
-    int x = atoi(argv[1]);
-    //printf("integer is %i\n", x);
 
-    printf("Plaintext: ");
-    string ptext = get_string();
-    //printf("text is: %s\n", ptext);
+    string key = argv[1];
+    int keyLength = strlen(key);
 
-    for (int i = 0, n = strlen(ptext); i < n; i++)
+    for (int i = 0; i < strlen(key); i++)
     {
-        if (ptext[i] == ' ')
+        if (!isalpha(key[i]))
         {
-            ptext[i] = ptext[i];
+            printf("false");
+            return 1;
         }
-        else if (isalpha(ptext[i]))
+    }
+
+    printf("plaintext: ");
+    string ptext = get_string();
+
+    for (int i = 0, a = 0, n = strlen(ptext); i < n; i++)
+    {
+        int vig = tolower(key[a % keyLength]) - 'a';
+
+        if (isupper(ptext[i]))
         {
-            if (isupper(ptext[i]))
-            {
-                ptext[i] = (ptext[i] - 65 + x) % 26 + 65;
-            }
-             if (islower(ptext[i]))
-            {
-                ptext[i] = (ptext[i] - 97 + x) % 26 + 97;
-            }
+           ptext[i] = 'A' + (ptext[i] - 'A' + vig) % 26;
+
+            a++;
+        }
+        else if (islower(ptext[i]))
+        {
+            ptext[i] = 'a' + (ptext[i] - 'a' + vig) % 26;
+
+            a++;
         }
         else
         {
             ptext[i] = ptext[i];
         }
     }
-    printf("Ciphertext: %s", ptext);
+    printf("ciphertext: %s", ptext);
     printf("\n");
     return 0;
 }
